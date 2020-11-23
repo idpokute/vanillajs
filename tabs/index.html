@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vanilla Tabs</title>
+
+    <style>
+        .tab-container-header a {
+            display: inline-block;
+            width: auto;
+            line-height: 1.5;
+            border: 1px solid lightgray;
+            padding: 1rem;
+            cursor: pointer;
+        }
+        .tab-container-header a.active {
+            background-color: lightgray;
+            font-weight: bold;
+        }
+        .tab-container-body {
+            border: 1px solid lightgray;
+        }
+        .tab {
+            display: none;
+        }
+        
+        .tab.active {
+            display: block;
+        }
+
+        .no-selection {
+            user-select: none; /* standard syntax */
+            -webkit-user-select: none; /* webkit (safari, chrome) browsers */
+            -moz-user-select: none; /* mozilla browsers */
+            -khtml-user-select: none; /* webkit (konqueror) browsers */
+            -ms-user-select: none; /* IE10+ */
+        }
+    </style>
+
+</head>
+<body>
+    <div class="tab-container">
+        <div class="tab-container-header">
+            <a onClick="openTab(this, 'firstTab');" class="active no-selection">First</a>
+            <a onClick="openTab(this, 'secondTab');" class="no-selection">Second</a>
+            <a onClick="openTab(this, 'thirdTab');" class="no-selection">Third</a>
+        </div>
+        <div class="tab-container-body">
+            <div id="firstTab" class="tab active">
+                Hello This is my first tab.
+            </div>
+            <div id="secondTab" class="tab">
+                I'm from South Korea.<br/>
+                I can do it.
+            </div>
+            <div id="thirdTab" class="tab">
+                My name is kute.
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        // In case of using multiple tab-containers
+        // var tabs = document.querySelectorAll('.tab-container');
+        // tabs.forEach(function(value, index) {
+        //     console.log(value);
+        // });
+
+        function getChildren(n, skipMe){
+            var r = [];
+            for ( ; n; n = n.nextSibling ) 
+            if ( n.nodeType == 1 && n != skipMe)
+                r.push( n );        
+            return r;
+        };
+
+        function getSiblings(n) {
+            return getChildren(n.parentNode.firstChild, n);
+        }
+
+        var openTab = function (elm, id) {
+            //
+            if (elm.classList.contains('active')) return;
+
+            elm.classList.toggle('active');
+            getSiblings(elm).forEach(function(element) {
+                element.classList.remove('active');
+            })
+            
+            var tab = document.getElementById(id);
+
+            tab.classList.toggle('active');
+            getSiblings(tab).forEach(function(element) {
+                element.classList.remove('active');
+            })
+        };
+
+
+    </script>
+</body>
+</html>
