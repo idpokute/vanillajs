@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vanilla Tabs</title>
+
+    <style>
+        .tab-header a {
+            display: inline-block;
+            width: auto;
+            line-height: 1.5;
+            border: 1px solid lightgray;
+            padding: 1rem;
+            cursor: pointer;
+        }
+        .tab-header a.active {
+            background-color: lightgray;
+            font-weight: bold;
+        }
+        .tab-sheet {
+            display: none;
+            border: 1px solid lightgray;
+        }
+        
+        .tab-sheet.active {
+            display: block;
+        }
+
+        .no-selection {
+            user-select: none; /* standard syntax */
+            -webkit-user-select: none; /* webkit (safari, chrome) browsers */
+            -moz-user-select: none; /* mozilla browsers */
+            -khtml-user-select: none; /* webkit (konqueror) browsers */
+            -ms-user-select: none; /* IE10+ */
+        }
+    </style>
+
+</head>
+<body>
+    <div class="tab-container">
+        <div class="tab-header">
+            <a onClick="openTab(this, 'firstTab');" class="tab-label active no-selection">First</a>
+            <a onClick="openTab(this, 'secondTab');" class="tab-label no-selection">Second</a>
+            <a onClick="openTab(this, 'thirdTab');" class="tab-label no-selection">Third</a>
+        </div>
+
+        <div id="firstTab" class="tab-sheet active">
+            Hello This is my first tab.
+        </div>
+        <div id="secondTab" class="tab-sheet">
+            I'm from South Korea.<br/>
+            I can do it.
+        </div>
+        <div id="thirdTab" class="tab-sheet">
+            My name is kute.
+        </div>
+    </div>
+
+    <script>
+        var openTab = function (elm, id) {
+            var i, tabcontent, tablinks;
+
+            tablinks = document.querySelectorAll('.tab-header .tab-label');
+            tablinks.forEach(function(el) {
+                el.className = el.className.replace(' active', '');
+            })
+
+            tabcontent = document.querySelectorAll('.tab-sheet');
+            tabcontent.forEach(function(el) {
+                el.style.display = 'none';
+            })
+            
+            document.getElementById(id).style.display = 'block';
+            elm.className += ' active';           
+        };
+
+    </script>
+</body>
+</html>

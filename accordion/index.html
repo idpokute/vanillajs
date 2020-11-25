@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vanilla Accordion</title>
+
+    <style>
+        .accordion {
+            width: 100%;
+        }
+        .accordion .header {
+            display: flex;
+            border: 1px solid #eee;
+            padding: 0.7rem;
+        }
+
+        .accordion .sheet-body {
+            overflow: hidden;
+            background-color: #eee;
+            max-height: 0;
+            transition: max-height 0.2s ease-out;
+        }
+        .accordion .sheet-body.active {
+            /* display: block; */
+        }
+
+        .sheet-status::after {
+            padding: 3px;
+            content: '\02795'; /* Unicode character for "plus" sign (+) */
+            font-size: 13px;
+            color: #777;
+        }
+        .sheet-status.active::after {
+            content: "\2796"; /* Unicode character for "minus" sign (-) */
+        }
+
+        .justify-content-between {
+            justify-content: space-between;
+        }
+
+    </style>
+
+</head>
+<body>
+
+    <div class="accordion">
+        <div class="header justify-content-between" onclick="toggleAccordion(this, 'sheet1');">
+            <span>Heading1</span>
+            <span class="sheet-status"></span>
+        </div>
+        
+        <div id="sheet1" class="sheet-body">
+            <div style="padding: 1rem;">
+                hello world<br>
+                my duba;
+            </div>
+        </div>
+        
+        <div class="header justify-content-between" onclick="toggleAccordion(this, 'sheet2');">
+            <span>Heading2</span>
+            <span class="sheet-status"></span>
+        </div>
+        <div id="sheet2" class="sheet-body">
+            <div style="padding: 1rem;">hello world2</div>            
+        </div>
+
+        <div class="header justify-content-between" onclick="toggleAccordion(this, 'sheet3');">
+            <span>Heading3</span>
+            <span class="sheet-status"></span>
+        </div>
+        <div id="sheet3" class="sheet-body">
+            <div style="padding: 1rem;">hello world3</div>
+        </div>
+    </div>
+
+    
+    <script>
+        function toggleAccordion(that, id) {
+            var elm = document.getElementById(id);            
+            elm.classList.toggle('active');
+            
+            // maxHeight를 이용하여 animation을 적용한다.
+            if (elm.style.maxHeight) {
+                elm.style.maxHeight = null;
+            } else {
+                elm.style.maxHeight = elm.scrollHeight + 'px';
+            }
+
+            that.getElementsByClassName('sheet-status')[0].classList.toggle('active');
+            
+        }
+    </script>
+</body>
+</html>
