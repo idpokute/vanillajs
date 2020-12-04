@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Implement Side Navigation</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
+
+    <style>
+
+
+        * {
+            box-sizing: border-box;
+        }
+        .container {
+            display: flex;
+            width: 100vw;
+            height: 100vh;
+        }
+        .main {
+            display: flex;
+            flex-wrap: wrap;
+            flex-grow: 1;
+            background-color: aquamarine;
+        }
+        .side {
+            display: none;
+        }
+        .side.active {
+            display: flex;
+            flex-direction: column;
+        }
+        .nav {
+            flex-shrink: 0;
+            background-color: chocolate;
+        }
+
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+        <div class="main"></div>
+        
+        <div id="navContent" class="side">
+            <div class="item">Menu1</div>
+            <div class="item">Menu2</div>
+            <div class="item">Menu3</div>
+            <div class="item">Menu4</div>
+            <div class="item">Menu5</div>
+            <div class="item">Menu6</div>
+        </div>
+        <div class="nav">
+            <button onclick="document.getElementById('navContent').classList.toggle('active');">Toggle</button>
+        </div>
+    </div>
+
+</body>
+</html>

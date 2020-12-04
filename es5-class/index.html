@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        Person = function Person(name, age) {
+            this._name = name;
+            this._age = age;
+        }
+
+        Person.getInfo = function(instance) {
+            return {
+                name: instance._name,
+                age: instance._age
+            };
+        }
+        Person.prototype.getName = function() {
+            return this._name
+        }
+        Person.prototype.getAge = function() {
+            return this._age
+        }
+
+        var sehui = new Person('sehui', 40);
+        console.log(Person.getInfo(sehui))
+
+        Person = function Person(name, age, gender='male') {
+            this._name = name;
+            this._age = age;
+            this._gender = gender;
+        }
+        Person.getInfo = function(instance) {
+            return {
+                name: instance._name,
+                age: instance._age,
+                gender: instance._gender
+            };
+        }
+
+        Employee = function Employee(name, age, title) {
+            this.superClass(name, age)
+            this._title = title
+        }
+        // Employee.prototype = new Person()
+        // Employee.prototype.constructor = Employee;
+        // Employee.getGender = function () {
+        //     return this._gender
+        // }
+        // Employee.getTitle = function() {
+        //     return this._title;
+        // }
+
+        // var sehui = new Person('rumiko', 35, 'female')
+        // console.dir(sehui)
+        // var ruby = new Employee('rubypark', 25, 'CEO');
+        // console.dir(ruby)
+        // var ruby = new Employee('rubypark', 25, 'CEO');
+
+        // Bridge = function () {}
+        // Bridge.prototype = Person.prototype;
+
+        // Employee.prototype = new Bridge();
+        // Employee.prototype.constructor = Employee        
+        // Employee.prototype.getGender = function () {
+        //     return this._gender;
+        // }
+        // var ruby = new Employee('park', 40, 'CTO');
+        // console.dir(ruby)
+
+        extendClass = (function() {
+            function Bridge() {}
+            return function (Parent, Child) {
+                Bridge.prototype = Parent.prototype;
+                Child.prototype = new Bridge();
+                Child.prototype.constructor = Child;
+                Child.prototype.superClass = Parent;
+            }
+        })();
+
+        extendClass(Person, Employee);
+        Employee.prototype.getTitle = function() {
+            return this._title;
+        }
+        var ruby = new Employee('ruby', 35, 'CEO');
+        console.dir(ruby)
+      
+      var test = (function() {
+
+            var c = 'closuser';
+
+          return function(a, b) {
+              console.log(a, b, c);
+          }
+      })()
+      test(1,2);
+
+        
+        // delete ruby.__proto__._name;
+        // delete ruby.__proto__._age;
+        // delete ruby.__proto__._gender;
+        
+
+    </script>
+</body>
+</html>
