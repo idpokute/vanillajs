@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>토글 그룹을 만들어보자. (작업중)</title>
+
+    <style>
+        .dropdown {
+            display: none;
+        }
+        .dropdown.active {
+            display: block;
+        }
+    </style>
+
+</head>
+<body>
+    <div id="div1" data-layer='1' data-hp="50" onclick="ToggleGroup.toggle(this);"><button>Button1</button></div>
+    <div id="div2" data-layer='1' onclick="toggle('dropdown2');"><button>Button2</button></div>
+    <div id="div3" data-layer='2' onclick="toggle('dropdown3');"><button>Button3</button></div>
+    <div id="div4" onclick="toggle('dropdown4');"><button>Button4</button></div>
+    
+    <div id="dropdown1" class="dropdown">HI1</div>
+    <div id="dropdown2" class="dropdown">HI2</div>
+    <div id="dropdown3" class="dropdown">HI3</div>
+    <div id="dropdown4" class="dropdown">HI4</div>
+
+
+    <script>
+         extendClass = (function() {
+            function Bridge() {}
+            return function (Parent, Child) {
+                Bridge.prototype = Parent.prototype;
+                Child.prototype = new Bridge();
+                Child.prototype.constructor = Child;
+                Child.prototype.superClass = Parent;
+            }
+        })();       
+    
+        // This requires data-layer
+        ToggleGroup = function (element) {
+            this.group = [];
+        }
+        ToggleGroup.toggle = function(instance) {
+            instance
+        }
+        ToggleGroup.prototype.add = function(element) {
+            return this.group.push(element);
+        }
+        ToggleGroup.prototype.getlayer = function(layer) {
+            return this.group.filter(function (element) {
+                return element.dataset.layer == layer;
+            });    
+        }
+        ToggleGroup.prototype.setvalue = function(layer, prop, value) {
+            this.getlayer(layer).forEach(function (element, index) {
+                element.dataset[prop] = value
+            })
+        }
+
+        // extendClass(Person, Employee);
+        // Employee.prototype.getTitle = function() {
+        //     return this._title;
+        // }        
+        layer1 = new ToggleGroup()
+        layer1.add(document.getElementById('div1'));
+        layer1.add(document.getElementById('div2'));
+        layer1.add(document.getElementById('div3'));
+        layer1.add(document.getElementById('div4'));
+
+        function toggle(targetid) {
+            var t = document.getElementById(targetid);
+            t.dataset.layer
+
+            t.classList.toggle('active')
+            console.log(t)
+        }
+
+
+        layer1.setvalue(1, 'hp', 10)
+        
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graph Chart SVG</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.css">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        html {
+            font-size: 14px;
+            height: 100%;
+        }
+        body {
+            height: 100%;
+        }
+
+        .svg-wrapper {
+            /* border: 1px solid gray; */
+            transition: fill .3s ease;
+        }
+        .graph {
+            background-color: white;
+            border: 1px solid red;
+            width: 500px;
+            height: 281px;
+        }
+        .grid {
+            stroke: #ccc;
+            stroke-width: 1;
+            stroke-dasharray: 0;
+        }
+        .labels {
+            font-size: 12px;
+        }
+        .labels.x-labels {
+            text-anchor: middle;
+        }
+        .labels.y-labels {
+            text-anchor: end;;
+        }        
+        .data {
+            fill: red;
+            stroke-width: 1;
+        }
+
+
+    </style>
+
+    <script>
+        createChart = function (type, data) {}
+    </script>
+
+</head>
+<body style="display:flex; align-items: center; justify-content: center; height: 100%;">
+    
+    <div class="svg-wrapper">
+        <!-- SVG는 인라인 엘리먼트 -->
+        <svg class="graph"><!-- 500 x 281 -->
+            <g class="grid x-grid">
+                <line x1="90" x2="450" y1="231" y2="231"></line>
+            </g>
+            <g class="grid y-grid">
+                <line x1="90" x2="90" y1="50" y2="231"></line>
+            </g>
+            <g class="labels x-labels">
+                <text x="90" y="251">html</text>
+                <text x="140" y="251">js</text>
+                <text x="190" y="251">wordpress</text>
+                <text x="240" y="251">php</text>
+                <text x="290" y="251">react</text>
+                <text x="340" y="251">phaser</text>
+                
+                <text x="250" y="271">Skill</text>
+            </g>
+            <g class="labels y-labels">
+                <text x="70" y="231">know</text>
+                <text x="70" y="181">jr</text>
+                <text x="70" y="131">int</text>
+                <text x="70" y="81">sr</text>
+
+                <text x="0" y="0" text-anchor="middle" transform="translate(20, 140) rotate(90) ">Experience</text>
+            </g>
+            <g class="data" data-setname="">
+                <circle cx="90" cy="81" r="4"></circle>
+                <circle cx="140" cy="81" r="4"></circle>
+                <circle cx="190" cy="81" r="4"></circle>
+                <circle cx="240" cy="101" r="4"></circle>
+                <circle cx="290" cy="131" r="4"></circle>
+                <circle cx="340" cy="181" r="4"></circle>
+            </g>
+        </svg>
+    </div>
+
+</body>
+</html>

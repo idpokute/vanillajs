@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Line Chart SVG</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.css">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        html {
+            font-size: 14px;
+            height: 100%;
+        }
+        body {
+            height: 100%;
+        }
+
+        .svg-wrapper {
+            border: 1px solid gray;
+            transition: fill .3s ease;
+        }
+        .chart {
+            background-color: white;
+            border: 1px solid red;
+            width: 500px;
+            height: 100px;
+        }
+        
+
+
+    </style>
+</head>
+<body style="display:flex; align-items: center; justify-content: center; height: 100%;">
+    
+    <div class="svg-wrapper">
+        <!-- SVG는 인라인 엘리먼트 -->
+        <svg viewBox="0 0 500 100" class="chart">
+            <polyline 
+                fill="none" 
+                stroke="red" 
+                stroke-width="3" 
+                points="
+                0,0
+                20,100
+                40,60
+                60,70
+                80,30
+                " />
+        </svg>
+    </div>
+
+</body>
+</html>
